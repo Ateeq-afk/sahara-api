@@ -1,3 +1,13 @@
-// run `node index.js` in the terminal
+const express = require('express');
+const bodyParser = require('body-parser');
+const enquiryRoute = require('./route/enquiry');
 
-console.log(`Hello Node.js v${process.versions.node}!`);
+const app = express();
+const port = process.env.PORT || 4000;
+
+app.use(bodyParser.json());
+app.use('/enquiry', enquiryRoute);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
